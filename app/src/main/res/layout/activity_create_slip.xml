@@ -33,13 +33,14 @@
             android:textColor="@color/black"
             android:textSize="19sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/numberEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="108"
             android:textSize="19dp"
+            android:inputType="number"
             android:background="@android:color/transparent"
             android:ems="10"
             android:textColor="@color/black" />
@@ -69,13 +70,14 @@
             android:textColor="@color/black"
             android:textSize="19sp" />
 
-        <EditText
-            android:id="@+id/dateEditText"
+        <TextView
+            android:id="@+id/edt_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:hint="Select Date"
+            android:inputType="date"
             android:datePickerMode="calendar"
-            android:text="10/06/2024"
             android:background="@android:color/transparent"
             android:ems="10"
             android:textColor="@color/black" />
@@ -94,7 +96,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LinearLayout">
 
         <TextView
-            android:layout_width="55dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
             android:layout_weight="1"
@@ -130,7 +132,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LinearLayout1">
 
         <TextView
-            android:layout_width="55dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
             android:layout_weight="1"
@@ -165,7 +167,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LinearLayout2">
 
         <TextView
-            android:layout_width="55dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
             android:layout_weight="1"
@@ -200,7 +202,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LinearLayout3">
 
         <TextView
-            android:layout_width="55dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
             android:layout_weight="1"
@@ -218,7 +220,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:inputType="text"
+            android:inputType="number"
             android:textColor="@color/black" />
     </LinearLayout>
     <LinearLayout
@@ -235,7 +237,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LinearLayout4">
 
         <TextView
-            android:layout_width="55dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
             android:layout_weight="1"
@@ -253,12 +255,12 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:inputType="text"
+            android:inputType="number"
             android:textColor="@color/black" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/backButtonEdit"
+        android:id="@+id/btn_back"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginLeft="12dp"
