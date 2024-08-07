@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "421105339937",
+    "project_id": "businessbuddy-78b9d",
+    "storage_bucket": "businessbuddy-78b9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421105339937:android:c961890d8b275a2d3cdd60",
+        "android_client_info": {
+          "package_name": "com.example.businessbuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421105339937-j6jkedg2mkbk9d4gacnabm5nne30m5qs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.businessbuddy",
+            "certificate_hash": "2682fb618db437034f1ef80764dd408d2b1fb1d3"
+          }
+        },
+        {
+          "client_id": "421105339937-977ufnoh2u025d6j1i57nb3m2qac1u1s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVGCjqDDqA85CWJOX8uapCG48xSnFhP1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421105339937-977ufnoh2u025d6j1i57nb3m2qac1u1s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
