@@ -30,7 +30,6 @@ class CreateSlip : AppCompatActivity() {
     }
 
     // Variables to save data to the database
-    private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
     private lateinit var slipReference: DatabaseReference
     private lateinit var slipCountReference: DatabaseReference
@@ -134,7 +133,7 @@ class CreateSlip : AppCompatActivity() {
             if (task.isSuccessful) {
                 availableSlipNumbersReference.child(slipNumber).removeValue().addOnCompleteListener { removeTask ->
                     if (removeTask.isSuccessful) {
-                        generateAndSavePdf(slip)
+//                        generateAndSavePdf(slip)
                         updateSlipCount()
                         showToast("Data saved successfully")
                         clearFields()
@@ -167,103 +166,103 @@ class CreateSlip : AppCompatActivity() {
         })
     }
 
-    private fun generateAndSavePdf(slip: Slip) {
-        val pdfDocument = PdfDocument()
-
-        // Page setup
-        val pageInfo = PdfDocument.PageInfo.Builder(595, 542, 1).create() // A4 size
-        val page = pdfDocument.startPage(pageInfo)
-        val canvas = page.canvas
-
-        // Define paint for text
-        val paint = Paint()
-        paint.textSize = 20f
-        paint.color = Color.BLACK
-//        paint.textAlign = androidx.compose.ui.graphics.Paint.Align.LEFT
-
-        // Define text size for labels
-        val labelTextSize = 19f
-        val labelPaint = Paint()
-        labelPaint.textSize = labelTextSize
-        labelPaint.color = Color.BLACK
-        labelPaint.typeface = Typeface.DEFAULT_BOLD
-
-        // Define text size for content
-        val contentPaint = Paint()
-        contentPaint.textSize = 19f
-        contentPaint.color = Color.BLACK
-
-        // Draw company name
-        val companyName = "R.K. Tiles\nKhairari More (Rohtak)"
-        val companyNameRect = android.graphics.Rect()
-        labelPaint.getTextBounds(companyName, 0, companyName.length, companyNameRect)
-        canvas.drawText(companyName, (pageInfo.pageWidth - companyNameRect.width()) / 2f, 50f, labelPaint)
-
-        // Draw slip content
-        val marginLeft = 40f
-        val marginTop = 150f
-        val lineSpacing = 40f
-
-        canvas.drawText("Slip Number:", marginLeft, marginTop, labelPaint)
-        canvas.drawText("${slip.slipNumber}", marginLeft + 180f, marginTop, contentPaint)
-
-        canvas.drawText("Date:", marginLeft, marginTop + lineSpacing, labelPaint)
-        canvas.drawText("${slip.slipDate}", marginLeft + 180f, marginTop + lineSpacing, contentPaint)
-
-        canvas.drawText("Name:", marginLeft, marginTop + 2 * lineSpacing, labelPaint)
-        canvas.drawText("${slip.slipName}", marginLeft + 180f, marginTop + 2 * lineSpacing, contentPaint)
-
-        canvas.drawText("Vehicle No:", marginLeft, marginTop + 3 * lineSpacing, labelPaint)
-        canvas.drawText("${slip.slipVehicleNo}", marginLeft + 180f, marginTop + 3 * lineSpacing, contentPaint)
-
-        canvas.drawText("Item:", marginLeft, marginTop + 4 * lineSpacing, labelPaint)
-        canvas.drawText("${slip.slipItem}", marginLeft + 180f, marginTop + 4 * lineSpacing, contentPaint)
-
-        canvas.drawText("Quantity:", marginLeft, marginTop + 5 * lineSpacing, labelPaint)
-        canvas.drawText("${slip.slipQuantity}", marginLeft + 180f, marginTop + 5 * lineSpacing, contentPaint)
-
-        canvas.drawText("Amount:", marginLeft, marginTop + 6 * lineSpacing, labelPaint)
-        canvas.drawText("${slip.slipAmount}", marginLeft + 180f, marginTop + 6 * lineSpacing, contentPaint)
-
-        pdfDocument.finishPage(page)
-
-        val filePath = "${getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)}/Slip_${slip.slipNumber}.pdf"
-        val file = File(filePath)
-
-        try {
-            pdfDocument.writeTo(FileOutputStream(file))
-            pdfDocument.close()
-            slip.slipNumber?.let { uploadPdfToFirebase(file, it) }
-        } catch (e: IOException) {
-            e.printStackTrace()
-            showToast("Failed to save PDF")
-        }
-    }
-
-
-    private fun uploadPdfToFirebase(file: File, slipNumber: String) {
-        val pdfUri = Uri.fromFile(file)
-        val pdfReference = FirebaseStorage.getInstance().reference.child("slips/${file.name}")
-
-        pdfReference.putFile(pdfUri).addOnSuccessListener {
-            pdfReference.downloadUrl.addOnSuccessListener { uri ->
-                val pdfUrl = uri.toString()
-                updateSlipWithPdfUrl(slipNumber, pdfUrl)
-            }
-        }.addOnFailureListener {
-            showToast("Failed to upload PDF")
-        }
-    }
-
-    private fun updateSlipWithPdfUrl(slipNumber: String, pdfUrl: String) {
-        slipReference.child(slipNumber).child("pdfUrl").setValue(pdfUrl).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                showToast("PDF URL saved successfully")
-            } else {
-                showToast("Failed to save PDF URL")
-            }
-        }
-    }
+//    private fun generateAndSavePdf(slip: Slip) {
+//        val pdfDocument = PdfDocument()
+//
+//        // Page setup
+//        val pageInfo = PdfDocument.PageInfo.Builder(595, 542, 1).create() // A4 size
+//        val page = pdfDocument.startPage(pageInfo)
+//        val canvas = page.canvas
+//
+//        // Define paint for text
+//        val paint = Paint()
+//        paint.textSize = 20f
+//        paint.color = Color.BLACK
+////        paint.textAlign = androidx.compose.ui.graphics.Paint.Align.LEFT
+//
+//        // Define text size for labels
+//        val labelTextSize = 19f
+//        val labelPaint = Paint()
+//        labelPaint.textSize = labelTextSize
+//        labelPaint.color = Color.BLACK
+//        labelPaint.typeface = Typeface.DEFAULT_BOLD
+//
+//        // Define text size for content
+//        val contentPaint = Paint()
+//        contentPaint.textSize = 19f
+//        contentPaint.color = Color.BLACK
+//
+//        // Draw company name
+//        val companyName = "R.K. Tiles\nKhairari More (Rohtak)"
+//        val companyNameRect = android.graphics.Rect()
+//        labelPaint.getTextBounds(companyName, 0, companyName.length, companyNameRect)
+//        canvas.drawText(companyName, (pageInfo.pageWidth - companyNameRect.width()) / 2f, 50f, labelPaint)
+//
+//        // Draw slip content
+//        val marginLeft = 40f
+//        val marginTop = 150f
+//        val lineSpacing = 40f
+//
+//        canvas.drawText("Slip Number:", marginLeft, marginTop, labelPaint)
+//        canvas.drawText("${slip.slipNumber}", marginLeft + 180f, marginTop, contentPaint)
+//
+//        canvas.drawText("Date:", marginLeft, marginTop + lineSpacing, labelPaint)
+//        canvas.drawText("${slip.slipDate}", marginLeft + 180f, marginTop + lineSpacing, contentPaint)
+//
+//        canvas.drawText("Name:", marginLeft, marginTop + 2 * lineSpacing, labelPaint)
+//        canvas.drawText("${slip.slipName}", marginLeft + 180f, marginTop + 2 * lineSpacing, contentPaint)
+//
+//        canvas.drawText("Vehicle No:", marginLeft, marginTop + 3 * lineSpacing, labelPaint)
+//        canvas.drawText("${slip.slipVehicleNo}", marginLeft + 180f, marginTop + 3 * lineSpacing, contentPaint)
+//
+//        canvas.drawText("Item:", marginLeft, marginTop + 4 * lineSpacing, labelPaint)
+//        canvas.drawText("${slip.slipItem}", marginLeft + 180f, marginTop + 4 * lineSpacing, contentPaint)
+//
+//        canvas.drawText("Quantity:", marginLeft, marginTop + 5 * lineSpacing, labelPaint)
+//        canvas.drawText("${slip.slipQuantity}", marginLeft + 180f, marginTop + 5 * lineSpacing, contentPaint)
+//
+//        canvas.drawText("Amount:", marginLeft, marginTop + 6 * lineSpacing, labelPaint)
+//        canvas.drawText("${slip.slipAmount}", marginLeft + 180f, marginTop + 6 * lineSpacing, contentPaint)
+//
+//        pdfDocument.finishPage(page)
+//
+//        val filePath = "${getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)}/Slip_${slip.slipNumber}.pdf"
+//        val file = File(filePath)
+//
+//        try {
+//            pdfDocument.writeTo(FileOutputStream(file))
+//            pdfDocument.close()
+//            slip.slipNumber?.let { uploadPdfToFirebase(file, it) }
+//        } catch (e: IOException) {
+//            e.printStackTrace()
+//            showToast("Failed to save PDF")
+//        }
+//    }
+//
+//
+//    private fun uploadPdfToFirebase(file: File, slipNumber: String) {
+//        val pdfUri = Uri.fromFile(file)
+//        val pdfReference = FirebaseStorage.getInstance().reference.child("slips/${file.name}")
+//
+//        pdfReference.putFile(pdfUri).addOnSuccessListener {
+//            pdfReference.downloadUrl.addOnSuccessListener { uri ->
+//                val pdfUrl = uri.toString()
+//                updateSlipWithPdfUrl(slipNumber, pdfUrl)
+//            }
+//        }.addOnFailureListener {
+//            showToast("Failed to upload PDF")
+//        }
+//    }
+//
+//    private fun updateSlipWithPdfUrl(slipNumber: String, pdfUrl: String) {
+//        slipReference.child(slipNumber).child("pdfUrl").setValue(pdfUrl).addOnCompleteListener { task ->
+//            if (task.isSuccessful) {
+//                showToast("PDF URL saved successfully")
+//            } else {
+//                showToast("Failed to save PDF URL")
+//            }
+//        }
+//    }
 
     // Clear edit texts
     private fun clearFields() {

@@ -6,7 +6,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.businessbuddy.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
@@ -18,8 +21,10 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        binding.btnCreateSlip.setOnClickListener {
-            startActivity(Intent(this, CreateSlip::class.java))
-        }
+        var navController = findNavController(R.id.fragmentContainerView)
+        var bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationBar)
+        bottomNav.setupWithNavController(navController)
+
+
     }
 }

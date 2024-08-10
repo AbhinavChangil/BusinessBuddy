@@ -9,16 +9,34 @@
     android:background="@drawable/gradient_background">
 
 
-    <Button
-        android:id="@+id/btn_createSlip"
-        android:layout_width="wrap_content"
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Slip"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:minHeight="65dp"
+        app:menu="@menu/menu"
+        app:itemActiveIndicatorStyle="@color/blue"
+        app:itemIconTint="@color/blue"
+        app:itemRippleColor="@color/blue"
+        app:itemTextAppearanceActive="@color/blue"
+        app:itemTextColor="@color/blue">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <fragment
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        android:layout_marginBottom="65dp"
+        app:navGraph="@navigation/navigation"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationBar"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

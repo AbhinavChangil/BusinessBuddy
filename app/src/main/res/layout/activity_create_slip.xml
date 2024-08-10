@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LinearLayout">
 
         <TextView
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
             android:layout_weight="1"
@@ -131,7 +131,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LinearLayout1">
 
         <TextView
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
             android:layout_weight="1"
@@ -166,7 +166,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LinearLayout2">
 
         <TextView
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
             android:layout_weight="1"
@@ -201,7 +201,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LinearLayout3">
 
         <TextView
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
             android:layout_weight="1"
@@ -236,7 +236,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LinearLayout4">
 
         <TextView
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
             android:layout_weight="1"
@@ -286,16 +286,23 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_back" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:layout_marginTop="40dp"
+        android:text="Create"
+        android:textStyle="bold"
+        android:fontFamily="@font/abhaya_libre"
+        android:textSize="20sp"
+        android:background="@drawable/bluebutton"
+        android:elevation="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LinearLayout5"
-        android:layout_marginTop="40dp"/>
+        android:textAllCaps="false"
+        android:textColor="@color/white"/>
 
 
 
