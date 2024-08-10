@@ -90,10 +90,16 @@ class SignUp : AppCompatActivity(){
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
                 task->
             if(task.isSuccessful){
+                val userEmail = auth.currentUser?.email.toString()
+                if(userEmail == "contractorravinder@gmail.com"){
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }else {
+                    startActivity(Intent(this, EmployeeSlip::class.java))
+                    finish()
+                }
                 Toast.makeText(this,"Account Created Successfully!",Toast.LENGTH_SHORT).show()
                 saveUserData()
-                startActivity(Intent(this,MainActivity::class.java))
-                finish()
             }
             else{
                 Toast.makeText(this, "Account Creation Failed!",Toast.LENGTH_SHORT).show()

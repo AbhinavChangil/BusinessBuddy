@@ -89,9 +89,19 @@ class Login : AppCompatActivity() {
     private fun verifyUserAccount(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Toast.makeText(this, "LogIn Successful", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
+                val userEmail = auth.currentUser?.email.toString()
+                if(userEmail == "contractorravinder@gmail.com"){
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }else {
+                    startActivity(Intent(this, EmployeeSlip::class.java))
+                    finish()
+                }
+                Toast.makeText(
+                    this,
+                    "Successfully Logged In with Google!",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 Toast.makeText(this, "Please Enter Correct Email and Password", Toast.LENGTH_SHORT).show()
             }
@@ -106,9 +116,20 @@ class Login : AppCompatActivity() {
                 val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
                 auth.signInWithCredential(credential).addOnCompleteListener { authtask ->
                     if (authtask.isSuccessful) {
-                        Toast.makeText(this, "Successfully Logged In with Google!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finish()
+                        val userEmail = auth.currentUser?.email.toString()
+                        if(userEmail == "abhichangil2@gmail.com"){
+                            startActivity(Intent(this, MainActivity::class.java))
+                            finish()
+                        }else {
+                            startActivity(Intent(this, EmployeeSlip::class.java))
+                            finish()
+                        }
+                        Toast.makeText(
+                            this,
+                            "Successfully Logged In with Google!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
                     } else {
                         Toast.makeText(this, "Google SignIn Failed !", Toast.LENGTH_SHORT).show()
                         Log.d("Account Creation", "createAccount: Failure", task.exception)

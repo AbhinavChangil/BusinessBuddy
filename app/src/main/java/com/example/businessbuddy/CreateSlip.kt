@@ -21,6 +21,7 @@ import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.sql.Driver
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -77,15 +78,16 @@ class CreateSlip : AppCompatActivity() {
             val slipNumber = binding.numberEditText.text.toString().trim()
             val slipDate = binding.edtDate.text.toString().trim()
             val slipName = binding.NameEditText.text.toString().trim()
+            val slipDriver = binding.DriverEditText.text.toString().trim()
             val slipVehicleNo = binding.VehicleEditText.text.toString().trim()
             val slipItem = binding.ItemEditText.text.toString().trim()
             val slipQuantity = binding.quantityEditText.text.toString().trim()
             val slipAmount = binding.amountEditText.text.toString().trim()
 
-            if (slipNumber.isEmpty() || slipDate.isEmpty() || slipName.isEmpty() || slipVehicleNo.isEmpty() || slipItem.isEmpty() || slipQuantity.isEmpty() || slipAmount.isEmpty()) {
+            if (slipNumber.isEmpty() || slipDate.isEmpty() || slipName.isEmpty() || slipVehicleNo.isEmpty() || slipItem.isEmpty() || slipQuantity.isEmpty() || slipAmount.isEmpty() || slipDriver.isEmpty()) {
                 showToast("Please Fill the Details!")
             } else {
-                saveSlip(slipNumber, slipDate, slipName, slipVehicleNo, slipItem, slipQuantity, slipAmount)
+                saveSlip(slipNumber, slipDate, slipName, slipDriver, slipVehicleNo, slipItem, slipQuantity, slipAmount)
             }
         }
     }
@@ -127,8 +129,8 @@ class CreateSlip : AppCompatActivity() {
     }
 
     // Save slip data in database
-    private fun saveSlip(slipNumber: String, slipDate: String, slipName: String, slipVehicleNo: String, slipItem: String, slipQuantity: String, slipAmount: String) {
-        val slip = Slip(slipNumber, slipDate, slipName, slipVehicleNo, slipItem, slipQuantity, slipAmount)
+    private fun saveSlip(slipNumber: String, slipDate: String, slipName: String, slipDriver: String, slipVehicleNo: String, slipItem: String, slipQuantity: String, slipAmount: String) {
+        val slip = Slip(slipNumber, slipDate, slipName, slipDriver, slipVehicleNo, slipItem, slipQuantity, slipAmount)
         slipReference.child(slipNumber).setValue(slip).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 availableSlipNumbersReference.child(slipNumber).removeValue().addOnCompleteListener { removeTask ->
@@ -270,6 +272,7 @@ class CreateSlip : AppCompatActivity() {
         binding.VehicleEditText.setText("")
         binding.ItemEditText.setText("")
         binding.quantityEditText.setText("")
+        binding.DriverEditText.setText("")
         binding.amountEditText.setText("")
         binding.amountEditText.clearFocus()
     }

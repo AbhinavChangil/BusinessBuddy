@@ -9,6 +9,7 @@ class SlipDetails() : Serializable{
     var slipDate: String? = null
     var slipItem:String?=null
     var slipName: String? = null
+    var slipDriver: String? = null
     var slipNumber: String? = null
     var slipQuantity: String? = null
     var slipVehicleNo: String? = null
@@ -18,6 +19,7 @@ class SlipDetails() : Serializable{
         slipDate = parcel.readString()
         slipItem = parcel.readString()
         slipName = parcel.readString()
+        slipDriver = parcel.readString()
         slipNumber = parcel.readString()
         slipQuantity = parcel.readString()
         slipVehicleNo = parcel.readString()
@@ -28,6 +30,7 @@ class SlipDetails() : Serializable{
         parcel.writeString(slipDate)
         parcel.writeString(slipItem)
         parcel.writeString(slipName)
+        parcel.writeString(slipDriver)
         parcel.writeString(slipNumber)
         parcel.writeString(slipQuantity)
         parcel.writeString(slipVehicleNo)

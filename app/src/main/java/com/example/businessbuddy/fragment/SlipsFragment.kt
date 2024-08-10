@@ -95,6 +95,7 @@ class SlipsFragment: Fragment(), CreatedSlipsAdapter.OnItemClicked {
         intent.putExtra("SlipNumber", slipDetails.slipNumber)
         intent.putExtra("SlipDate", slipDetails.slipDate)
         intent.putExtra("SlipName", slipDetails.slipName)
+        intent.putExtra("SlipDriver", slipDetails.slipDriver)
         intent.putExtra("SlipVehicleNo", slipDetails.slipVehicleNo)
         intent.putExtra("SlipItem", slipDetails.slipItem)
         intent.putExtra("SlipQuantity", slipDetails.slipQuantity)
